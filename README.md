@@ -5,6 +5,8 @@ command line script/utility to pull mythtv guide data program/channel starttime/
 
 **DEPENDS on a recent bash and the xmlstarlet program.
 
+***SCRIPT IS INTENTIONALLY VERBOSE RIGHT NOW UNTIL NEAR COMPLETION
+
 
 #eg use:
 
