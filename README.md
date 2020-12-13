@@ -1,6 +1,8 @@
 # getMythProgram.sh
-command line script/utility to pull mythtv guide data program/channel starttime/endtime
-calculates duration from start/end. Matches only current block and crawls back only 30minutes for now looking for matches.
+command line script/utility to pull mythtv guide data through mythtv services API
+eg I pull: program/channel starttime/endtime
+calculates duration from start/end. 
+Matches only current block and crawls back only 30minutes (for now) looking for matches.
 
 *tested only against mythtv 29.X servers, but should work with newer. 
 
