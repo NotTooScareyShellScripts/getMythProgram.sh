@@ -1,6 +1,8 @@
 # getMythProgram.sh
 command line utility to pull mythtv guide data program/channel starttime/endtime
 
+**DEPENDS on a recent bash and the xmlstarlet program.
+
 
 #eg use:
 
