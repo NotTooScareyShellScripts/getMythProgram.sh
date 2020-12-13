@@ -45,7 +45,8 @@ PROGAM DURATION is:   60 minutes
 
 
 
-
+### Script Contents.
+### Note: at last update only looks backward 30 minutes, will add more soon.
 
 ```
 #!/bin/bash
