@@ -1,5 +1,52 @@
 # getMythProgram.sh
 command line utility to pull mythtv guide data program/channel starttime/endtime
+
+
+#eg use:
+
+```
+./getMythProgram.sh $HOSTNAME/IP $MYTHTV-CHANNEL
+```
+
+on my system , eg
+```
+sh getMythProgram.sh pbskids-tv.localdomain 1091
+```
+
+or 
+
+```
+./getMythProgram.sh 192.168.1.162  1091
+     
+Local Time FNOW is now:                       2020-12-12T20:23:47
+UTC Time FNOWUTC is now:                      2020-12-13T04:23:47
+TRIMMED TO HOUR-UTC Time FNOWUTCH is now:     2020-12-13T04:
+TRIMMED TO HOUR-UTC Time FNOWUTCHMM is now:   2020-12-13T04:23
+TMSS is:					    30:00
+ZMSS is:					    00:00
+FNOW3TMSS is:		      		      2020-12-13T04:30:00
+FNOW3ZMSS is: 	      			      2020-12-13T04:00:00
+HNOWNEW is: 	      			      2020-12-13T04:00:00
+COUTURLSTARTTIME is                           2020-12-13T04:00:00
+COUTURLENDTIME is                             2020-12-13T05:00:00
+URL is: http://192.168.1.162:6544/Guide/GetProgramDetails?StartTime=2020-12-13T04:00:00&Chanid=1091
+ 
+GameNight
+
+
+2020-12-13T04:00:00Z
+2020-12-13T05:00:00Z
+EPOC OUTURLENDTIME is:     1607835600
+EPOC OUTURLSTARTTIME is:   1607832000
+EPOCSECONDS = 3600
+PROGAM DURATION is:   60 minutes
+```
+
+
+
+
+
+
 ```
 #!/bin/bash
 FNOW=$(date  +%FT%T)
