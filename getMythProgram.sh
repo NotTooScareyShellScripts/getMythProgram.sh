@@ -81,7 +81,7 @@ if [ "$COUTURLSTARTTIME" != "$HNOWNEW" ]; then
 	if [ "$COUTURLSTARTTIME" != "$FNOWPREV30" ];then 
 		echo "prev 30 minutes NOT MATCHED @ 	              $FNOWPREV30"
 		echo " "
-		echo "Show must have started even earlier than 30minutes ago"
+		echo "Show must have started even earlier"
 		exit 1
 	else
 		break
