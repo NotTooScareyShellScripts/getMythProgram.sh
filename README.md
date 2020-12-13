@@ -1,5 +1,6 @@
 # getMythProgram.sh
 command line script/utility to pull mythtv guide data program/channel starttime/endtime
+calculates duration from start/end.
 
 *tested only against mythtv 29.X servers, but should work with newer. 
 
