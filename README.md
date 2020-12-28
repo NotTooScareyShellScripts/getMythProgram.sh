@@ -13,6 +13,8 @@ Matches only current block and crawls back only 30minutes (for now) looking for 
 ***SCRIPT IS INTENTIONALLY VERBOSE RIGHT NOW UNTIL NEAR COMPLETION
 ***NOTE THIS IS *NOT* PRODUCTION READY. FIRST RELEASE IN TESTING and ONLY COVERS A NARROW TIMESLOT RIGHT NOW.
 
+TODO: add another parameter for tunerX or use auto by default
+
 
 #eg use:
 
