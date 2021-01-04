@@ -11,14 +11,16 @@ It will go back up to two hours to find a matching program to display.
 	
 
 #### *eg use:
-```Use fqdn/ip 
+```
+Use fqdn/ip for first parameter $1
 
-use channel from your mythtv in the following format:
-	SourceInput, ChannelMajor, ChannelMajor, ChannelMinor
-	*insert 0 for the first channel major from left if only two digits as in 6.1
+For second parameter $2
+	use channel from your mythtv in the following format:
+	 *SourceInput, ChannelMajor, ChannelMajor, ChannelMinor
+	  insert 0 for the first channel major from left if only two digits as in 6.1
 		eg. for channel in mythtv 6.1, would be 1061
-		If three digits then it uses the place of 0/2nd from left.
-		eg2. for channel in mythtv 13.3, would be 1133
+	  If three digits then it uses the place of 0/2nd from left.
+	        eg2. for channel in mythtv 13.3, would be 1133
 ````
 
 		
