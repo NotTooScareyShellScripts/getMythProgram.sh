@@ -13,7 +13,7 @@ It will go back up to two hours to find a matching program to display.
 
 #### *eg use:
 ```
-Use fqdn/ip for first parameter $1
+Use hostnamefqdn/ip for first parameter $1
 
 For second parameter $2
 	use channel from your mythtv in the following format:
