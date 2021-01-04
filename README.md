@@ -181,3 +181,8 @@ else
 
 fi
 ```
+
+
+
+#### Example 1 Source for comparision for above
+![mythtv.guide](/mythtv.guide.qsp.png)
