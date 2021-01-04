@@ -63,19 +63,52 @@ PROGRAM_DURATION:			      30 minutes
 ```
 
 or by its ip, with example output standard output format
+# This mythtv server uses ONLY EIT data from OTA and antenna
 
 ```
-./getMythProgram.sh 192.168.1.218 1163
+
+/getMythProgram.sh 192.168.1.218 1163
      
-Local Time FNOW:                              2021-01-04T04:27:46
-UTC Time FNOWUTC:                             2021-01-04T12:27:46
-PROGRAM:				      The Key To Healthy Living
-PROGRAM_STARTTIME:		              2021-01-04T12:00:00Z
-PROGRAM_ENDTIME:			      2021-01-04T12:30:00Z
+Local Time FNOW:                              2021-01-04T04:35:02
+UTC Time FNOWUTC:                             2021-01-04T12:35:02
+PROGRAM:				      Paid Programming
+PROGRAM_STARTTIME:		              2021-01-04T12:30:00Z
+PROGRAM_ENDTIME:			      2021-01-04T13:00:00Z
+PROGRAM_DURATION:			      30 minutes
+
+
+```
+
+# This mythtv server uses schedules direct data
+
+```
+./getMythProgram.sh 192.168.1.162 1163
+     
+Local Time FNOW:                              2021-01-04T04:35:22
+UTC Time FNOWUTC:                             2021-01-04T12:35:22
+PROGRAM:				      Paid Programming
+PROGRAM_STARTTIME:		              2021-01-04T12:30:00Z
+PROGRAM_ENDTIME:			      2021-01-04T13:00:00Z
 PROGRAM_DURATION:			      30 minutes
 ```
 
 
+
+
+
+
+
+Test against different mythtv server diff channel
+```
+./getMythProgram.sh 192.168.1.162 1283
+     
+Local Time FNOW:                              2021-01-04T04:31:30
+UTC Time FNOWUTC:                             2021-01-04T12:31:30
+PROGRAM:				      Molly of Denali
+PROGRAM_STARTTIME:		              2021-01-04T12:30:00Z
+PROGRAM_ENDTIME:			      2021-01-04T13:00:00Z
+PROGRAM_DURATION:			      30 minutes
+```
 
 
 
