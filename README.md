@@ -24,37 +24,7 @@ or by its ip
 
 ```
 ./getMythProgram.sh 192.168.1.218 1163
-     
-Local Time FNOW:                              2021-01-04T02:38:57
-UTC Time FNOWUTC:                             2021-01-04T10:38:57
-TRIMMED TO HOUR-UTC Time FNOWUTCH:            2021-01-04T10:
-TRIMMED TO HOUR-UTC Time FNOWUTCHMM:          2021-01-04T10:38
-TMSS:					      30:00
-ZMSS:					      00:00
-FNOW3TMSS:		      		      2021-01-04T10:30:00
-FNOW3ZMSS: 	      			      2021-01-04T10:00:00
-HNOWNEW0:   			              2021-01-04T10:00:00
-HNOWNEW:   			              2021-01-04T10:30:00
-COUTURL0STARTTIME:                            2021-01-04T10:00:00
-COUTURL0ENDTIME:                              2021-01-04T12:00:00
-COUTURLSTARTTIME:                             
-COUTURLENDTIME:                               
-URL0:  		                              http://192.168.1.218:6544/Guide/GetProgramDetails?StartTime=2021-01-04T10:00:00&Chanid=1163
-URL:  				              http://192.168.1.218:6544/Guide/GetProgramDetails?StartTime=2021-01-04T10:30:00&Chanid=1163
-STARTTIMES TIMES NOT MATCHED@                 2021-01-04T10:30:00
-TRYING EARLIER STARTTIME                      2021-01-04T10:00:00
-PROGRAM:				      Warning From Space
-PROGRAM_STARTTIME:		              2021-01-04T10:00:00Z
-PROGRAM_ENDTIME:			      2021-01-04T12:00:00Z
-PROGRAM_DURATION:			      120 minutes
-     
-```
-
-### Script Contents.
-### Note: at last update only looks backward 30 minutes, will add more soon.
-
-```
-#!/bin/bash
+     #!/bin/bash
 FNOW=$(date  +%FT%T)
 echo "     "
 echo "Local Time FNOW:                              $FNOW"
@@ -86,23 +56,32 @@ echo "FNOW3ZMSS: 	      			      $FNOW3ZMSS"
 if [ `echo $FNOWUTCHMM|cut -d: -f2` -lt 30 ];
         then
             HNOWNEW=$(echo $FNOW3ZMSS)
-            HNOWNEW0=$(date -d "$(echo $HNOWNEW) 30min ago" +"%FT%T")
+            HNOWNEW30=$(date -d "$(echo $HNOWNEW) 30min ago" +"%FT%T")
+            HNOWNEW60=$(date -d "$(echo $HNOWNEW) 60min ago" +"%FT%T")
+            HNOWNEW90=$(date -d "$(echo $HNOWNEW) 90min ago" +"%FT%T")
+            HNOWNEW120=$(date -d "$(echo $HNOWNEW) 120min ago" +"%FT%T")
         else
             HNOWNEW=$(echo $FNOW3TMSS)
-            HNOWNEW0=$(date -d "$(echo $HNOWNEW) 30min ago" +"%FT%T")
+            HNOWNEW30=$(date -d "$(echo $HNOWNEW) 30min ago" +"%FT%T")
+            HNOWNEW60=$(date -d "$(echo $HNOWNEW) 60min ago" +"%FT%T")
+            HNOWNEW90=$(date -d "$(echo $HNOWNEW) 90min ago" +"%FT%T")
+            HNOWNEW120=$(date -d "$(echo $HNOWNEW) 120min ago" +"%FT%T")
 
 fi
 
-#30 minutes earlier than HNOWNEW
-echo "HNOWNEW0:   			              $HNOWNEW0"
 
+
+echo "HNOWNEW120:   			              $HNOWNEW120"
+echo "HNOWNEW90:   			              $HNOWNEW90"
+echo "HNOWNEW60:   			              $HNOWNEW60"
+echo "HNOWNEW30:   			              $HNOWNEW30"
 echo "HNOWNEW:   			              $HNOWNEW"
 
-
-#this gives both the 30minute(URL) and 60(URL0) minute start time lookups 
-URL0="http://$1:6544/Guide/GetProgramDetails?StartTime=$HNOWNEW0&Chanid=$2"
+URL120="http://$1:6544/Guide/GetProgramDetails?StartTime=$HNOWNEW120&Chanid=$2"
+URL90="http://$1:6544/Guide/GetProgramDetails?StartTime=$HNOWNEW90&Chanid=$2"
+URL60="http://$1:6544/Guide/GetProgramDetails?StartTime=$HNOWNEW60&Chanid=$2"
+URL30="http://$1:6544/Guide/GetProgramDetails?StartTime=$HNOWNEW30&Chanid=$2"
 URL="http://$1:6544/Guide/GetProgramDetails?StartTime=$HNOWNEW&Chanid=$2"
-
 
 XMLSTARLET_ALL="/usr/bin/xmlstarlet sel -t -v //Title -nl -v //StartTime -nl -v //EndTime -nl -nl"
 XMLSTARLET_TITLE="/usr/bin/xmlstarlet sel -t -v //Title -nl"
@@ -111,13 +90,35 @@ XMLSTARLET_TITLE="/usr/bin/xmlstarlet sel -t -v //Title -nl"
 XMLSTARLET_STARTTIME="/usr/bin/xmlstarlet sel -t -v //StartTime -nl"
 XMLSTARLET_ENDTIME="/usr/bin/xmlstarlet sel -t -v //EndTime -nl"
 
+OUTURL120TITLE=$(curl -s $URL120|$XMLSTARLET_TITLE)
+#OUTURL120SUBTITLE=$(curl -s $URL120|$XMLSTARLET_SUBTITLE)
+#OUTURL120ORIGINALAIRDATE=$(curl -s $URL120|$XMLSTARLET_ORIGINALAIRDATE)
+OUTURL120STARTTIME=$(curl -s $URL120|$XMLSTARLET_STARTTIME)
+OUTURL120ENDTIME=$(curl -s $URL120|$XMLSTARLET_ENDTIME)
+OUTURL120_ALL=$(curl -s $URL120|$XMLSTARLET_ALL)
 
-OUTURL0TITLE=$(curl -s $URL0|$XMLSTARLET_TITLE)
-#OUTURL0SUBTITLE=$(curl -s $URL0|$XMLSTARLET_SUBTITLE)
-#OUTURL0ORIGINALAIRDATE=$(curl -s $URL0|$XMLSTARLET_ORIGINALAIRDATE)
-OUTURL0STARTTIME=$(curl -s $URL0|$XMLSTARLET_STARTTIME)
-OUTURL0ENDTIME=$(curl -s $URL0|$XMLSTARLET_ENDTIME)
-OUTURL0_ALL=$(curl -s $URL0|$XMLSTARLET_ALL)
+OUTURL90TITLE=$(curl -s $URL90|$XMLSTARLET_TITLE)
+#OUTURL90SUBTITLE=$(curl -s $URL90|$XMLSTARLET_SUBTITLE)
+#OUTURL90ORIGINALAIRDATE=$(curl -s $URL90|$XMLSTARLET_ORIGINALAIRDATE)
+OUTURL90STARTTIME=$(curl -s $URL90|$XMLSTARLET_STARTTIME)
+OUTURL90ENDTIME=$(curl -s $URL90|$XMLSTARLET_ENDTIME)
+OUTURL90_ALL=$(curl -s $URL90|$XMLSTARLET_ALL)
+
+
+OUTURL60TITLE=$(curl -s $URL60|$XMLSTARLET_TITLE)
+#OUTURL60SUBTITLE=$(curl -s $URL60|$XMLSTARLET_SUBTITLE)
+#OUTURL60ORIGINALAIRDATE=$(curl -s $URL60|$XMLSTARLET_ORIGINALAIRDATE)
+OUTURL60STARTTIME=$(curl -s $URL60|$XMLSTARLET_STARTTIME)
+OUTURL60ENDTIME=$(curl -s $URL60|$XMLSTARLET_ENDTIME)
+OUTURL60_ALL=$(curl -s $URL60|$XMLSTARLET_ALL)
+
+
+OUTURL30TITLE=$(curl -s $URL30|$XMLSTARLET_TITLE)
+#OUTURL30SUBTITLE=$(curl -s $URL30|$XMLSTARLET_SUBTITLE)
+#OUTURL30ORIGINALAIRDATE=$(curl -s $URL30|$XMLSTARLET_ORIGINALAIRDATE)
+OUTURL30STARTTIME=$(curl -s $URL30|$XMLSTARLET_STARTTIME)
+OUTURL30ENDTIME=$(curl -s $URL30|$XMLSTARLET_ENDTIME)
+OUTURL30_ALL=$(curl -s $URL30|$XMLSTARLET_ALL)
 
 
 OUTURLTITLE=$(curl -s $URL|$XMLSTARLET_TITLE)
@@ -127,24 +128,51 @@ OUTURLSTARTTIME=$(curl -s $URL|$XMLSTARLET_STARTTIME)
 OUTURLENDTIME=$(curl -s $URL|$XMLSTARLET_ENDTIME)
 OUTURL_ALL=$(curl -s $URL|$XMLSTARLET_ALL)
 
+COUTURL120STARTTIME=$(echo $OUTURL120STARTTIME|cut -c1-19)
+echo "COUTURL120STARTTIME:                          $COUTURL120STARTTIME"
+COUTURL120ENDTIME=$(echo $OUTURL120ENDTIME|cut -c1-19)
+echo "COUTURL120ENDTIME:                            $COUTURL120ENDTIME"
 
-COUTURL0STARTTIME=$(echo $OUTURL0STARTTIME|cut -c1-19)
-echo "COUTURL0STARTTIME:                            $COUTURL0STARTTIME"
-COUTURL0ENDTIME=$(echo $OUTURL0ENDTIME|cut -c1-19)
-echo "COUTURL0ENDTIME:                              $COUTURL0ENDTIME"
+COUTURL90STARTTIME=$(echo $OUTURL90STARTTIME|cut -c1-19)
+echo "COUTURL90STARTTIME:                           $COUTURL90STARTTIME"
+COUTURL90ENDTIME=$(echo $OUTURL90ENDTIME|cut -c1-19)
+echo "COUTURL90ENDTIME:                             $COUTURL90ENDTIME"
 
+
+COUTURL60STARTTIME=$(echo $OUTURL60STARTTIME|cut -c1-19)
+echo "COUTURL60STARTTIME:                           $COUTURL60STARTTIME"
+COUTURL60ENDTIME=$(echo $OUTURL60ENDTIME|cut -c1-19)
+echo "COUTURL60ENDTIME:                             $COUTURL60ENDTIME"
+
+COUTURL30STARTTIME=$(echo $OUTURL30STARTTIME|cut -c1-19)
+echo "COUTURL30STARTTIME:                           $COUTURL30STARTTIME"
+COUTURL30ENDTIME=$(echo $OUTURL30ENDTIME|cut -c1-19)
+echo "COUTURL30ENDTIME:                             $COUTURL30ENDTIME"
 
 COUTURLSTARTTIME=$(echo $OUTURLSTARTTIME|cut -c1-19)
 echo "COUTURLSTARTTIME:                             $COUTURLSTARTTIME"
 COUTURLENDTIME=$(echo $OUTURLENDTIME|cut -c1-19)
 echo "COUTURLENDTIME:                               $COUTURLENDTIME"
 
-echo "URL0:  		                              $URL0"
+echo "URL120:  		                      $URL120"
+echo "URL90:  		                      $URL90"
+echo "URL60:  		                      $URL60"
+echo "URL30:  		                      $URL30"
 echo "URL:  				              $URL"
 
 #calculate duration EndTime-StartTime=Duraton
-EPOCOUTURL0STARTTIME=$(date -d "$(echo $OUTURL0STARTTIME)" +"%s")
-EPOCOUTURL0ENDTIME=$(date -d "$(echo $OUTURL0ENDTIME)" +"%s")
+
+EPOCOUTURL120STARTTIME=$(date -d "$(echo $OUTURL120STARTTIME)" +"%s")
+EPOCOUTURL120ENDTIME=$(date -d "$(echo $OUTURL120ENDTIME)" +"%s")
+
+EPOCOUTURL90STARTTIME=$(date -d "$(echo $OUTURL90STARTTIME)" +"%s")
+EPOCOUTURL90ENDTIME=$(date -d "$(echo $OUTURL90ENDTIME)" +"%s")
+
+EPOCOUTURL60STARTTIME=$(date -d "$(echo $OUTURL60STARTTIME)" +"%s")
+EPOCOUTURL60ENDTIME=$(date -d "$(echo $OUTURL60ENDTIME)" +"%s")
+
+EPOCOUTURL30STARTTIME=$(date -d "$(echo $OUTURL30STARTTIME)" +"%s")
+EPOCOUTURL30ENDTIME=$(date -d "$(echo $OUTURL30ENDTIME)" +"%s")
 
 EPOCOUTURLSTARTTIME=$(date -d "$(echo $OUTURLSTARTTIME)" +"%s")
 EPOCOUTURLENDTIME=$(date -d "$(echo $OUTURLENDTIME)" +"%s")
@@ -153,21 +181,52 @@ EPOCOUTURLENDTIME=$(date -d "$(echo $OUTURLENDTIME)" +"%s")
 
 if [ "$COUTURLSTARTTIME" != "$HNOWNEW" ] ;then
 	echo "STARTTIMES TIMES NOT MATCHED@                 $HNOWNEW"
-	echo "TRYING EARLIER STARTTIME                      $HNOWNEW0"
-	if [ "$COUTURL0STARTTIME" != "$HNOWNEW0" ]; then
-		echo "STARTTIMES TIMES NOT MATCHED@                 $HNOWNEW or $HNOWNEW0"
-		exit 1
+	echo "TRYING EARLIER STARTTIME                      $HNOWNEW30"
+	if [ "$COUTURL30STARTTIME" != "$HNOWNEW30" ]; then
+		echo "STARTTIMES TIMES NOT MATCHED@                 $HNOWNEW or $HNOWNEW30"
+		echo "TRYING EARLIER STARTTIME                      $HNOWNEW60"
+		if [ "$COUTURL60STARTTIME" != "$HNOWNEW60" ]; then
+			echo "STARTTIMES TIMES NOT MATCHED@                 $HNOWNEW or $HNOWNEW30 or $HNOWNEW60"
+			echo "TRYING EARLIER STARTTIME                      $HNOWNEW90"
+			if [ "$COUTURL90STARTTIME" != "$HNOWNEW90" ]; then
+				echo "STARTTIMES TIMES NOT MATCHED@                 $HNOWNEW or $HNOWNEW30 or $HNOWNEW90"
+				exit 1
+			else
+				echo "PROGRAM:				      $OUTURL90TITLE"
+				echo "PROGRAM_STARTTIME:		              $OUTURL90STARTTIME"
+				echo "PROGRAM_ENDTIME:			      $OUTURL90ENDTIME"
+				#echo "EPOC OUTURL90ENDTIME is:     $EPOCOUTURL90ENDTIME"
+				#echo "EPOC OUTURL90STARTTIME is:   $EPOCOUTURL90STARTTIME"
+				let  "EPOCSECONDSURL90 = $EPOCOUTURL90ENDTIME - $EPOCOUTURL90STARTTIME "
+				#echo "EPOCSECONDSURL90 = $EPOCSECONDSURL90"
+				let  "DURATIONURL90 = $EPOCSECONDSURL90/60"
+				echo "PROGRAM_DURATION:			      $DURATIONURL90 minutes"
+			fi	
+
+
+		else
+			echo "PROGRAM:				      $OUTURL60TITLE"
+			echo "PROGRAM_STARTTIME:		              $OUTURL60STARTTIME"
+			echo "PROGRAM_ENDTIME:			      $OUTURL60ENDTIME"
+			#echo "EPOC OUTURL60ENDTIME is:     $EPOCOUTURL60ENDTIME"
+			#echo "EPOC OUTURL60STARTTIME is:   $EPOCOUTURL60STARTTIME"
+			let  "EPOCSECONDSURL60 = $EPOCOUTURL30ENDTIME - $EPOCOUTURL60STARTTIME "
+			#echo "EPOCSECONDSURL60 = $EPOCSECONDSURL60"
+			let  "DURATIONURL60 = $EPOCSECONDSURL60/60"
+			echo "PROGRAM_DURATION:			      $DURATIONURL30 minutes"
+		fi	
 	else
-		echo "PROGRAM:				      $OUTURL0TITLE"
-		echo "PROGRAM_STARTTIME:		              $OUTURL0STARTTIME"
-		echo "PROGRAM_ENDTIME:			      $OUTURL0ENDTIME"
+		echo "PROGRAM:				      $OUTURL30TITLE"
+		echo "PROGRAM_STARTTIME:		              $OUTURL30STARTTIME"
+		echo "PROGRAM_ENDTIME:			      $OUTURL30ENDTIME"
 		#echo "EPOC OUTURLENDTIME is:     $EPOCOUTURLENDTIME"
 		#echo "EPOC OUTURLSTARTTIME is:   $EPOCOUTURLSTARTTIME"
-		let  "EPOCSECONDSURL0 = $EPOCOUTURL0ENDTIME - $EPOCOUTURL0STARTTIME "
-		#echo "EPOCSECONDSURL0 = $EPOCSECONDSURL0"
-		let  "DURATIONURL0 = $EPOCSECONDSURL0/60"
-		echo "PROGRAM_DURATION:			      $DURATIONURL0 minutes"
+		let  "EPOCSECONDSURL30 = $EPOCOUTURL30ENDTIME - $EPOCOUTURL30STARTTIME "
+		#echo "EPOCSECONDSURL30 = $EPOCSECONDSURL30"
+		let  "DURATIONURL30 = $EPOCSECONDSURL30/60"
+		echo "PROGRAM_DURATION:			      $DURATIONURL30 minutes"
 	fi	
+
 else	
 	echo "PROGRAM:				      $OUTURLTITLE"
 	echo "PROGRAM_STARTTIME:		              $OUTURLSTARTTIME"
@@ -180,6 +239,8 @@ else
 	echo "PROGRAM_DURATION:			      $DURATIONURL minutes"
 
 fi
+
+
 ```
 
 
