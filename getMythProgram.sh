@@ -7,25 +7,26 @@ FNOWUTC=$(date --utc +%FT%T)
 echo "UTC Time FNOWUTC:                             $FNOWUTC"
 
 FNOWUTCH=$(echo $FNOWUTC|cut -c1-14)
-echo "TRIMMED TO HOUR-UTC Time FNOWUTCH:            $FNOWUTCH"
+#echo "TRIMMED TO HOUR-UTC Time FNOWUTCH:            $FNOWUTCH"
 
 FNOWUTCHMM=$(echo $FNOWUTC|cut -c1-16)
-echo "TRIMMED TO HOUR-UTC Time FNOWUTCHMM:          $FNOWUTCHMM"
+#echo "TRIMMED TO HOUR-UTC Time FNOWUTCHMM:          $FNOWUTCHMM"
 
 TMSS=30:00
-echo "TMSS:					      $TMSS"
+#echo "TMSS:					      $TMSS"
 
 ZMSS=00:00
-echo "ZMSS:					      $ZMSS"
+#echo "ZMSS:					      $ZMSS"
 
 FNOW3TMSS=$(echo $FNOWUTCH$TMSS)
-echo "FNOW3TMSS:		      		      $FNOW3TMSS"
+#echo "FNOW3TMSS:		      		      $FNOW3TMSS"
 
 FNOW3ZMSS=$(echo $FNOWUTCH$ZMSS)
-echo "FNOW3ZMSS: 	      			      $FNOW3ZMSS"
+#echo "FNOW3ZMSS: 	      			      $FNOW3ZMSS"
 
 
 #starts initial starttime based on current time on hour FNOW3ZMSS or FNOW3TMSS format
+# sets up vars for 30 minutes ago for two scenarios
 if [ `echo $FNOWUTCHMM|cut -d: -f2` -lt 30 ];
         then
             HNOWNEW=$(echo $FNOW3ZMSS)
@@ -44,11 +45,11 @@ fi
 
 
 
-echo "HNOWNEW120:   			              $HNOWNEW120"
-echo "HNOWNEW90:   			              $HNOWNEW90"
-echo "HNOWNEW60:   			              $HNOWNEW60"
-echo "HNOWNEW30:   			              $HNOWNEW30"
-echo "HNOWNEW:   			              $HNOWNEW"
+#echo "HNOWNEW120:   			              $HNOWNEW120"
+#echo "HNOWNEW90:   			              $HNOWNEW90"
+#echo "HNOWNEW60:   			              $HNOWNEW60"
+#echo "HNOWNEW30:   			              $HNOWNEW30"
+#echo "HNOWNEW:   			              $HNOWNEW"
 
 URL120="http://$1:6544/Guide/GetProgramDetails?StartTime=$HNOWNEW120&Chanid=$2"
 URL90="http://$1:6544/Guide/GetProgramDetails?StartTime=$HNOWNEW90&Chanid=$2"
@@ -102,36 +103,35 @@ OUTURLENDTIME=$(curl -s $URL|$XMLSTARLET_ENDTIME)
 OUTURL_ALL=$(curl -s $URL|$XMLSTARLET_ALL)
 
 COUTURL120STARTTIME=$(echo $OUTURL120STARTTIME|cut -c1-19)
-echo "COUTURL120STARTTIME:                          $COUTURL120STARTTIME"
+#echo "COUTURL120STARTTIME:                          $COUTURL120STARTTIME"
 COUTURL120ENDTIME=$(echo $OUTURL120ENDTIME|cut -c1-19)
-echo "COUTURL120ENDTIME:                            $COUTURL120ENDTIME"
+#echo "COUTURL120ENDTIME:                            $COUTURL120ENDTIME"
 
 COUTURL90STARTTIME=$(echo $OUTURL90STARTTIME|cut -c1-19)
-echo "COUTURL90STARTTIME:                           $COUTURL90STARTTIME"
+#echo "COUTURL90STARTTIME:                           $COUTURL90STARTTIME"
 COUTURL90ENDTIME=$(echo $OUTURL90ENDTIME|cut -c1-19)
-echo "COUTURL90ENDTIME:                             $COUTURL90ENDTIME"
-
+#echo "COUTURL90ENDTIME:                             $COUTURL90ENDTIME"
 
 COUTURL60STARTTIME=$(echo $OUTURL60STARTTIME|cut -c1-19)
-echo "COUTURL60STARTTIME:                           $COUTURL60STARTTIME"
+#echo "COUTURL60STARTTIME:                           $COUTURL60STARTTIME"
 COUTURL60ENDTIME=$(echo $OUTURL60ENDTIME|cut -c1-19)
-echo "COUTURL60ENDTIME:                             $COUTURL60ENDTIME"
+#echo "COUTURL60ENDTIME:                             $COUTURL60ENDTIME"
 
 COUTURL30STARTTIME=$(echo $OUTURL30STARTTIME|cut -c1-19)
-echo "COUTURL30STARTTIME:                           $COUTURL30STARTTIME"
+#echo "COUTURL30STARTTIME:                           $COUTURL30STARTTIME"
 COUTURL30ENDTIME=$(echo $OUTURL30ENDTIME|cut -c1-19)
-echo "COUTURL30ENDTIME:                             $COUTURL30ENDTIME"
+#echo "COUTURL30ENDTIME:                             $COUTURL30ENDTIME"
 
 COUTURLSTARTTIME=$(echo $OUTURLSTARTTIME|cut -c1-19)
-echo "COUTURLSTARTTIME:                             $COUTURLSTARTTIME"
+#echo "COUTURLSTARTTIME:                             $COUTURLSTARTTIME"
 COUTURLENDTIME=$(echo $OUTURLENDTIME|cut -c1-19)
-echo "COUTURLENDTIME:                               $COUTURLENDTIME"
+#echo "COUTURLENDTIME:                               $COUTURLENDTIME"
 
-echo "URL120:  		                      $URL120"
-echo "URL90:  		                      $URL90"
-echo "URL60:  		                      $URL60"
-echo "URL30:  		                      $URL30"
-echo "URL:  				              $URL"
+#echo "URL120:  		                      $URL120"
+#echo "URL90:  		                      $URL90"
+#echo "URL60:  		                      $URL60"
+#echo "URL30:  		                      $URL30"
+#echo "URL:  				              $URL"
 
 #calculate duration EndTime-StartTime=Duraton
 
@@ -163,7 +163,21 @@ if [ "$COUTURLSTARTTIME" != "$HNOWNEW" ] ;then
 			echo "TRYING EARLIER STARTTIME                      $HNOWNEW90"
 			if [ "$COUTURL90STARTTIME" != "$HNOWNEW90" ]; then
 				echo "STARTTIMES TIMES NOT MATCHED@                 $HNOWNEW or $HNOWNEW30 or $HNOWNEW90"
-				exit 1
+				echo "TRYING EARLIER STARTTIME                      $HNOWNEW120"
+				if [ "$COUTURL120STARTTIME" != "$HNOWNEW120" ]; then
+					echo "STARTTIMES TIMES NOT MATCHED@                 $HNOWNEW or $HNOWNEW30 or $HNOWNEW90 or $HNOWNEW120"
+					exit 1
+				else
+					echo "PROGRAM:				      $OUTURL120TITLE"
+					echo "PROGRAM_STARTTIME:		              $OUTURL120STARTTIME"
+					echo "PROGRAM_ENDTIME:			      $OUTURL120ENDTIME"
+					#echo "EPOC OUTURL120ENDTIME is:     $EPOCOUTURL120ENDTIME"
+					#echo "EPOC OUTURL120STARTTIME is:   $EPOCOUTURL120STARTTIME"
+					let  "EPOCSECONDSURL120 = $EPOCOUTURL120ENDTIME - $EPOCOUTURL120STARTTIME "
+					#echo "EPOCSECONDSURL120 = $EPOCSECONDSURL120"
+					let  "DURATIONURL120 = $EPOCSECONDSURL120/60"
+					echo "PROGRAM_DURATION:			      $DURATIONURL120 minutes"
+				fi
 			else
 				echo "PROGRAM:				      $OUTURL90TITLE"
 				echo "PROGRAM_STARTTIME:		              $OUTURL90STARTTIME"
