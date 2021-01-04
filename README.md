@@ -60,7 +60,7 @@ PROGRAM_DURATION:			      30 minutes
 ```
 
 or by its ip, with example output standard output format
-# This mythtv server uses ONLY EIT data from OTA and antenna
+#### This mythtv server uses ONLY EIT data from OTA and antenna
 
 ```
 
@@ -76,7 +76,7 @@ PROGRAM_DURATION:			      30 minutes
 
 ```
 
-# This mythtv server uses schedules direct data
+#### This mythtv server uses schedules direct data
 
 ```
 ./getMythProgram.sh 192.168.1.162 1163
@@ -95,7 +95,7 @@ PROGRAM_DURATION:			      30 minutes
 
 
 
-Test against different mythtv server diff channel
+#### Test against different mythtv server diff channel
 ```
 ./getMythProgram.sh 192.168.1.162 1283
      
@@ -112,7 +112,7 @@ PROGRAM_DURATION:			      30 minutes
 
 
 
-# Script Contents:
+#### Script Contents:
 ```
 #!/bin/bash
 FNOW=$(date  +%FT%T)
@@ -348,6 +348,6 @@ fi
 
 
 <!---
-### Example 1 Source for comparision for above
+#### Example 1 Source for comparision for above
 #![mythtv.guide](/mythtv.guide.qsp.png)
 -->
