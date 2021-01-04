@@ -145,7 +145,6 @@ FNOW3ZMSS=$(echo $FNOWUTCH$ZMSS)
 
 
 #starts initial starttime based on current time on hour FNOW3ZMSS or FNOW3TMSS format
-# sets up vars for 30 minutes ago for two scenarios
 if [ `echo $FNOWUTCHMM|cut -d: -f2` -lt 30 ];
         then
             HNOWNEW=$(echo $FNOW3ZMSS)
