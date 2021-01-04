@@ -17,10 +17,10 @@ calculates duration from start/end.
 
 on my system , eg
 ```
-sh getMythProgram.sh pbskids-tv.localdomain 1091
+./getMythProgram.sh rpi4-vc4xdev 1163
 ```
 
-or 
+or by its ip
 
 ```
 ./getMythProgram.sh 192.168.1.218 1163
