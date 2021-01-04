@@ -1,11 +1,12 @@
 # getMythProgram.sh
 command line script/utility to pull mythtv guide data through mythtv services API
 eg I pull: program/channel starttime/endtime
+
 calculates duration from start/end. 
 It will go back up to two hours to find a matching program to display.
 
-	*I created this for use with another project that itself is currently in development. Expect changes.
- 	*tested only against mythtv 29.X servers, but should work with newer. 
+*I created this for use with another project that itself is currently in development. Expect changes.
+	*tested only against mythtv 29.X servers, but should work with newer. 
   		**DEPENDS on a recent bash and the xmlstarlet program.
 
 ***SCRIPT IS INTENTIONALLY VERBOSE RIGHT NOW UNTIL NEAR COMPLETION
