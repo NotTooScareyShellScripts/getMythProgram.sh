@@ -3,16 +3,11 @@ command line script/utility to pull mythtv guide data through mythtv services AP
 eg I pull: program/channel starttime/endtime
 calculates duration from start/end. 
 *I created this for use with another project that itself is currently in development. Expect changes.
-
-*tested only against mythtv 29.X servers, but should work with newer. 
-
-**DEPENDS on a recent bash and the xmlstarlet program.
+ *tested only against mythtv 29.X servers, but should work with newer. 
+  **DEPENDS on a recent bash and the xmlstarlet program.
 
 ***SCRIPT IS INTENTIONALLY VERBOSE RIGHT NOW UNTIL NEAR COMPLETION
 ***NOTE THIS IS *NOT* PRODUCTION READY. FIRST RELEASE IN TESTING and ONLY COVERS A NARROW TIMESLOT RIGHT NOW.
-
-TODO: add another parameter for tunerX or use auto by default
-
 
 #eg use:
 
