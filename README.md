@@ -7,7 +7,8 @@ It will go back up to two hours to find a matching program to display.
 
 *I created this for use with another project that itself is currently in development. Expect changes.
 	*tested only against mythtv 29.X servers, but should work with newer. 
-  		**DEPENDS on recent versions of : bash, coreutils(cut/date), curl and the xmlstarlet program.
+
+**DEPENDS on recent versions of : bash, coreutils(cut/date), curl and the xmlstarlet program.
 	
 
 #### *eg use:
