@@ -9,9 +9,6 @@ It will go back up to two hours to find a matching program to display.
 	*tested only against mythtv 29.X servers, but should work with newer. 
   		**DEPENDS on a recent bash and the xmlstarlet program.
 
-***SCRIPT IS INTENTIONALLY VERBOSE RIGHT NOW UNTIL NEAR COMPLETION
-***NOTE THIS IS *NOT* PRODUCTION READY. FIRST RELEASE IN TESTING and ONLY COVERS A NARROW TIMESLOT RIGHT NOW.
-
 #eg use:
 
 ```
