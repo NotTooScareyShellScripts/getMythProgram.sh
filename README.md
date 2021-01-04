@@ -7,10 +7,20 @@ It will go back up to two hours to find a matching program to display.
 
 *I created this for use with another project that itself is currently in development. Expect changes.
 	*tested only against mythtv 29.X servers, but should work with newer. 
-  		**DEPENDS on a recent bash and the xmlstarlet program.
+  		**DEPENDS on recent versions of : bash, coreutils(cut/date), curl and the xmlstarlet program.
+	
 
 #### *eg use:
+Use fqdn/ip 
 
+use channel from your mythtv in the following format:
+	SourceInput, ChannelMajor, ChannelMajor, ChannelMinor
+	*insert 0 for the first channel major from left if only two digits as in 6.1
+		eg. for channel in mythtv 6.1, would be 1061
+		If three digits then it uses the place of 0/2nd from left.
+		eg2. for channel in mythtv 13.3, would be 1133
+		
+		
 ```
 ./getMythProgram.sh $HOSTNAME/IP $MYTHTV-CHANNEL
 ```
