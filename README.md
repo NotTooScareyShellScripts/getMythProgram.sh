@@ -1,4 +1,4 @@
-# getMythProgram.sh
+## getMythProgram.sh
 command line script/utility to pull mythtv guide data through mythtv services API
 eg I pull: program/channel starttime/endtime
 
@@ -9,18 +9,18 @@ It will go back up to two hours to find a matching program to display.
 	*tested only against mythtv 29.X servers, but should work with newer. 
   		**DEPENDS on a recent bash and the xmlstarlet program.
 
-#eg use:
+#### *eg use:
 
 ```
 ./getMythProgram.sh $HOSTNAME/IP $MYTHTV-CHANNEL
 ```
 
-on my system , eg
+#### *on my system , eg
 ```
 ./getMythProgram.sh rpi4-vc4xdev 1163
 ```
 
-or by its ip, with example output with full verbosity
+#### *or by its ip, with example output with full verbosity
 
 ```
 ./getMythProgram.sh 192.168.1.218 1163
@@ -59,8 +59,8 @@ PROGRAM_ENDTIME:			      2021-01-04T12:30:00Z
 PROGRAM_DURATION:			      30 minutes
 ```
 
-or by its ip, with example output standard output format
-#### This mythtv server uses ONLY EIT data from OTA and antenna
+#### *or by its ip, with example output standard output format
+#### *This mythtv server uses ONLY EIT data from OTA and antenna
 
 ```
 
@@ -76,7 +76,7 @@ PROGRAM_DURATION:			      30 minutes
 
 ```
 
-#### This mythtv server uses schedules direct data
+#### *This mythtv server uses schedules direct data
 
 ```
 ./getMythProgram.sh 192.168.1.162 1163
