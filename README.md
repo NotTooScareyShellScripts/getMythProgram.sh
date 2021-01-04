@@ -20,11 +20,60 @@ on my system , eg
 ./getMythProgram.sh rpi4-vc4xdev 1163
 ```
 
-or by its ip
+or by its ip, with example output
 
 ```
 ./getMythProgram.sh 192.168.1.218 1163
-     #!/bin/bash
+     
+Local Time FNOW:                              2021-01-04T04:02:33
+UTC Time FNOWUTC:                             2021-01-04T12:02:33
+TRIMMED TO HOUR-UTC Time FNOWUTCH:            2021-01-04T12:
+TRIMMED TO HOUR-UTC Time FNOWUTCHMM:          2021-01-04T12:02
+TMSS:					      30:00
+ZMSS:					      00:00
+FNOW3TMSS:		      		      2021-01-04T12:30:00
+FNOW3ZMSS: 	      			      2021-01-04T12:00:00
+HNOWNEW120:   			              2021-01-04T10:00:00
+HNOWNEW90:   			              2021-01-04T10:30:00
+HNOWNEW60:   			              2021-01-04T11:00:00
+HNOWNEW30:   			              2021-01-04T11:30:00
+HNOWNEW:   			              2021-01-04T12:00:00
+COUTURL120STARTTIME:                          2021-01-04T10:00:00
+COUTURL120ENDTIME:                            2021-01-04T12:00:00
+COUTURL90STARTTIME:                           
+COUTURL90ENDTIME:                             
+COUTURL60STARTTIME:                           
+COUTURL60ENDTIME:                             
+COUTURL30STARTTIME:                           
+COUTURL30ENDTIME:                             
+COUTURLSTARTTIME:                             2021-01-04T12:00:00
+COUTURLENDTIME:                               2021-01-04T12:30:00
+URL120:  		                      http://192.168.1.218:6544/Guide/GetProgramDetails?StartTime=2021-01-04T10:00:00&Chanid=1163
+URL90:  		                      http://192.168.1.218:6544/Guide/GetProgramDetails?StartTime=2021-01-04T10:30:00&Chanid=1163
+URL60:  		                      http://192.168.1.218:6544/Guide/GetProgramDetails?StartTime=2021-01-04T11:00:00&Chanid=1163
+URL30:  		                      http://192.168.1.218:6544/Guide/GetProgramDetails?StartTime=2021-01-04T11:30:00&Chanid=1163
+URL:  				              http://192.168.1.218:6544/Guide/GetProgramDetails?StartTime=2021-01-04T12:00:00&Chanid=1163
+PROGRAM:				      The Key To Healthy Living
+PROGRAM_STARTTIME:		              2021-01-04T12:00:00Z
+PROGRAM_ENDTIME:			      2021-01-04T12:30:00Z
+PROGRAM_DURATION:			      30 minutes
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Script Contents:
+```
+#!/bin/bash
 FNOW=$(date  +%FT%T)
 echo "     "
 echo "Local Time FNOW:                              $FNOW"
@@ -245,5 +294,5 @@ fi
 
 
 
-#### Example 1 Source for comparision for above
-![mythtv.guide](/mythtv.guide.qsp.png)
+####Example 1 Source for comparision for above
+#![mythtv.guide](/mythtv.guide.qsp.png)
