@@ -1,5 +1,5 @@
 ## getMythProgram.sh
-command line script/utility to pull mythtv guide data through mythtv services API
+bash shell command line script/utility to pull mythtv guide data through mythtv services API
 eg I pull: program/channel starttime/endtime
 
 calculates duration from start/end. 
