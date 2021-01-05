@@ -123,6 +123,42 @@ PROGRAM_DURATION:			      30 minutes
 ```
 
 
+#### Example: Loop through 3 virtual channels "1091 1092 1093" from mythtv on a server with ip: 192.168.1.162
+
+```
+for i in {1091..1093};do ./getMythProgram.sh 192.168.1.162 $i;done
+     
+Local Time FNOW:                              2021-01-04T16:06:27
+UTC Time FNOWUTC:                             2021-01-05T00:06:27
+PROGRAM:				      KEZI 9 News at 4:00
+PROGRAM_STARTTIME:		              2021-01-05T00:00:00Z
+PROGRAM_ENDTIME:			      2021-01-05T01:00:00Z
+EPOC OUTURLENDTIME is:     1609808400
+EPOC OUTURLSTARTTIME is:   1609804800
+EPOCSECONDSURL = 3600
+PROGRAM_DURATION:			      60 minutes
+     
+Local Time FNOW:                              2021-01-04T16:06:30
+UTC Time FNOWUTC:                             2021-01-05T00:06:30
+PROGRAM:				      Wagon Train
+PROGRAM_STARTTIME:		              2021-01-05T00:00:00Z
+PROGRAM_ENDTIME:			      2021-01-05T01:00:00Z
+EPOC OUTURLENDTIME is:     1609808400
+EPOC OUTURLSTARTTIME is:   1609804800
+EPOCSECONDSURL = 3600
+PROGRAM_DURATION:			      60 minutes
+     
+Local Time FNOW:                              2021-01-04T16:06:32
+UTC Time FNOWUTC:                             2021-01-05T00:06:32
+PROGRAM:				      NCIS: Los Angeles
+PROGRAM_STARTTIME:		              2021-01-05T00:00:00Z
+PROGRAM_ENDTIME:			      2021-01-05T01:00:00Z
+EPOC OUTURLENDTIME is:     1609808400
+EPOC OUTURLSTARTTIME is:   1609804800
+EPOCSECONDSURL = 3600
+PROGRAM_DURATION:			      60 minutes
+
+```
 
 
 
