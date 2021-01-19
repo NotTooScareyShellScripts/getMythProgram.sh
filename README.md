@@ -15,7 +15,8 @@ Eg. Reducing using bash/posix parameter expansion can do most
 of the cut, some of the grep and awk work too, if not all.
  I could go back through it and reduce it a lot using bash specific tricks or even posix-way
  tricks, but the understanding and readability would suffer for those just starting to learn shell.  
-Anyone is free to make it more obscure on their own, ... sorry I mean have more encapsulation......
+Anyone is free to make it more obscure on their own, ... sorry I mean anyone can rework it 
+to have more Abstraction & encapsulation......
 
 
 #### *eg use:
